@@ -61,7 +61,44 @@ app.post("/new", async (req, res) => {
 
     const newCandidate = await pool.query(query);
 
-    res.json(newCandidate.rows[0]);
+    res.json("Candidate was created !");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+// Update candidate
+app.put("/candidates/:id", async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      gender,
+      email,
+      question1,
+      question2,
+      question3,
+    } = req.body;
+
+    const { id } = req.params;
+
+    const query = {
+      text: "UPDATE candidate SET firstName = $1, lastName = $2, gender = $3, email = $4, question1 = $5, question2 = $6, question3 = $7 WHERE c_id = $8",
+      values: [
+        firstName,
+        lastName,
+        gender,
+        email,
+        question1,
+        question2,
+        question3,
+        id,
+      ],
+    };
+
+    const candidate = await pool.query(query);
+
+    res.json("Candidate was updated!");
   } catch (err) {
     console.error(err.message);
   }
