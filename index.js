@@ -98,9 +98,20 @@ app.put("/candidates/:id", async (req, res) => {
 
     const candidate = await pool.query(query);
 
-    res.json("Candidate was updated!");
+    res.json("Candidate has been UPDATED");
   } catch (err) {
     console.error(err.message);
+  }
+});
+
+// Delete
+app.delete("/candidates/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pool.query("DELETE FROM candidate WHERE c_id = $1", [id]);
+    res.json("Candidate has been DELETED");
+  } catch (err) {
+    console.error(err);
   }
 });
 
