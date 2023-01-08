@@ -10,6 +10,14 @@ app.use(express.json()); // => allow us to access the req.body
 // ROUTES
 
 // get all candidates
+app.get("/all", async (req, res) => {
+  try {
+    const allCandidates = await pool.query("SELECT * FROM candidate;");
+    res.json(allCandidates.rows);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 // create candidate
 app.post("/new", async (req, res) => {
