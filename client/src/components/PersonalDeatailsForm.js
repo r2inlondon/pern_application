@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const PersonalDetailsForm = ({ setShowComponent, setPersonalDetails }) => {
+const PersonalDetailsForm = ({ setShowComponent, setAnswers }) => {
   const [gender, setGender] = useState("");
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -18,12 +18,13 @@ const PersonalDetailsForm = ({ setShowComponent, setPersonalDetails }) => {
 
     console.log(gender);
 
-    setPersonalDetails({
+    setAnswers((prevState) => ({
+      ...prevState,
       firstName,
       lastName,
       gender,
       email,
-    });
+    }));
 
     setShowComponent({
       personalDetailsForm: false,

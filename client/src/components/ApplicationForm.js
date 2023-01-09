@@ -9,14 +9,11 @@ const ApplicationForm = () => {
     survey: false,
   });
 
-  const [personalDetails, setPersonalDetails] = useState({
+  const [answers, setAnswers] = useState({
     firstName: "",
     lastName: "",
     gender: "",
     email: "",
-  });
-
-  const [questions, setQuestions] = useState({
     question1: "",
     question2: "",
     question3: "",
@@ -30,13 +27,15 @@ const ApplicationForm = () => {
     <Fragment>
       {showComponent.personalDetailsForm && (
         <PersonalDetailsForm
-          setPersonalDetails={setPersonalDetails}
+          // setPersonalDetails={setPersonalDetails}
+          setAnswers={setAnswers}
           setShowComponent={setShowComponent}
         />
       )}
       {showComponent.survey && (
         <Survey
-          setQuestions={setQuestions}
+          // setQuestions={setQuestions}
+          setAnswers={setAnswers}
           setShowComponent={setShowComponent}
         />
       )}
