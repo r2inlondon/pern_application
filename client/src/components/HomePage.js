@@ -1,24 +1,20 @@
+import { useState } from "react";
+import LoginPage from "./LoginPage";
 import ApplicationForm from "./ApplicationForm";
 
 const HomePage = () => {
-  const apply = () => {
-    console.log("apply");
-  };
+  const [showComponent, setShowComponent] = useState({
+    showLogin: true,
+    showApplicationForm: false,
+  });
 
   return (
     <div className="bg-small">
       <div className="home-page">
-        <div className="login">
-          <p>Application Form Coded With React</p>
-          <div className="login-buttons">
-            <button className="the-button" onClick={apply}>
-              Candidate
-            </button>
-            <button className="the-button" onClick={apply}>
-              Dashboard
-            </button>
-          </div>
-        </div>
+        {showComponent.showLogin && (
+          <LoginPage setShowComponent={setShowComponent} />
+        )}
+        {showComponent.showApplicationForm && <ApplicationForm />}
       </div>
     </div>
   );
