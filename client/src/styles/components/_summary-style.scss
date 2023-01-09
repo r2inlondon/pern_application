@@ -1,0 +1,28 @@
+.summary {
+  width: $summary-width;
+}
+
+.summary-instructions {
+  font-size: $font-size-small;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.summary-title {
+  margin-top: 3rem;
+  font-size: $font-size-regular;
+  font-weight: bold;
+}
+
+.field-title {
+  font-weight: bold;
+}
+
+.black-line {
+  width: 100%;
+  border-bottom: $black-line;
+  opacity: 0.6;
+}
+
+.survey {
+  margin-top: 1rem;
+}

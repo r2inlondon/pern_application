@@ -1,0 +1,20 @@
+.personal-d {
+  width: $component-width;
+}
+
+.radio {
+  text-align: center;
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+}
+
+.radio p {
+  margin: 1rem 0;
+}
+
+.radio-b {
+  width: 3rem;
+}

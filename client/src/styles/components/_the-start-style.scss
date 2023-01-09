@@ -1,0 +1,18 @@
+.the-start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.the-start p {
+  margin: 1rem 0;
+  width: 20rem;
+  font-size: $font-size-bigish;
+  line-height: 3rem;
+}
+
+.the-start button {
+  margin-top: 2rem;
+}

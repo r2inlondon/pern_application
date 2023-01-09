@@ -1,0 +1,18 @@
+// Reset everything
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+//** Also, the root has been styled in _footer
+
+html {
+  //set rem to 10px
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-main;
+  font-size: $font-size-regular;
+}
