@@ -13,7 +13,12 @@ const Summary = ({ setShowComponent, answers, expandBackground }) => {
 
   const endForm = async (e) => {
     e.preventDefault();
-
+    const response = await fetch("http://localhost:5000/new", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(answers),
+    });
+    console.log(response);
     try {
     } catch (err) {
       console.error(err);
