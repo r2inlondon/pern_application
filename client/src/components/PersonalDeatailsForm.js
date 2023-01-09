@@ -16,8 +16,6 @@ const PersonalDetailsForm = ({ setShowComponent, setAnswers }) => {
     const gender = femaleRef.current.checked ? "female" : "male";
     const email = emailRef.current.value;
 
-    console.log(gender);
-
     setAnswers((prevState) => ({
       ...prevState,
       firstName,
@@ -29,6 +27,7 @@ const PersonalDetailsForm = ({ setShowComponent, setAnswers }) => {
     setShowComponent({
       personalDetailsForm: false,
       survey: true,
+      summary: false,
     });
   };
 

@@ -14,6 +14,12 @@ const Survey = ({ setAnswers, setShowComponent }) => {
       question2: pet,
       question3: food,
     }));
+
+    setShowComponent({
+      personalDetailsForm: false,
+      survey: false,
+      summary: true,
+    });
   };
 
   return (
