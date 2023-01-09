@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const PersonalDetailsForm = (props) => {
+const PersonalDetailsForm = ({ setShowComponent, setPersonalDetails }) => {
   const [gender, setGender] = useState("");
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -11,10 +11,24 @@ const PersonalDetailsForm = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log("firstName:", firstNameRef.current.value);
-    console.log("is Male", maleRef.current.checked);
-    console.log("is female", femaleRef.current.checked);
-    console.log("email", emailRef.current.value);
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const gender = femaleRef.current.checked ? "female" : "male";
+    const email = emailRef.current.value;
+
+    console.log(gender);
+
+    setPersonalDetails({
+      firstName,
+      lastName,
+      gender,
+      email,
+    });
+
+    setShowComponent({
+      personalDetailsForm: false,
+      survey: true,
+    });
   };
 
   return (
