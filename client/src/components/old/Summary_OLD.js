@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FormContext } from "./ApplicationForm";
 import "animate.css";
 
-const Summary = (props) => {
+const SummaryOld = (props) => {
   const details = useContext(FormContext);
 
   return (
@@ -91,4 +91,4 @@ const Summary = (props) => {
   );
 };
 
-export default Summary;
+export default SummaryOld;
