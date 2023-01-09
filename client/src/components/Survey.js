@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Survey = ({ setQuestions, setShowComponent }) => {
+const Survey = ({ setAnswers, setShowComponent }) => {
   const [music, setMusic] = useState("Pop");
   const [pet, setPet] = useState("Cat person");
   const [food, setFood] = useState("Yes");
@@ -8,11 +8,12 @@ const Survey = ({ setQuestions, setShowComponent }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    setQuestions({
+    setAnswers((prevState) => ({
+      ...prevState,
       question1: music,
       question2: pet,
       question3: food,
-    });
+    }));
   };
 
   return (
