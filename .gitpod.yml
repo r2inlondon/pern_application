@@ -6,7 +6,7 @@ image: gitpod/workspace-postgres
 
 tasks:
   - init: npm install
-    command: nodemon index
+  - command: nodemon index
     
 ports:
   - port: 5000
