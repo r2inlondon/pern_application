@@ -6,3 +6,8 @@ image: gitpod/workspace-postgres
 
 tasks:
   - init: npm install
+    command: psql -h localhost -d postgres
+
+ports:
+  - port: 5432
+    onOpen: open-preview
