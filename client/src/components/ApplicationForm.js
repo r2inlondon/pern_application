@@ -3,6 +3,7 @@ import { expandBackground } from "../js-functions/transparent-bg";
 import PersonalDetailsForm from "./PersonalDeatailsForm";
 import Survey from "./Survey";
 import Summary from "./Summary";
+import ProgressNav from "./ProgresNav";
 
 const ApplicationForm = () => {
   const [showComponent, setShowComponent] = useState({
@@ -27,6 +28,7 @@ const ApplicationForm = () => {
 
   return (
     <Fragment>
+      <ProgressNav />
       {showComponent.personalDetailsForm && (
         <PersonalDetailsForm
           // setPersonalDetails={setPersonalDetails}

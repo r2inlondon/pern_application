@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 import StartEnd from "./StartEnd";
-import ProgressNav from "./ProgressNav";
+import ProgressNavOld from "./ProgressNav_OLD";
 import PersonalDetails from "./PersonalDetails";
 import AddressDetails from "./AddressDetails";
 import Survey from "./Survey";
@@ -132,7 +132,7 @@ const ApplicationForm = () => {
       {details?.step0?.active ? <StartEnd handle={step0} /> : ""}
       {details?.step5?.active && <StartEnd handle={step5} />}
       <FormContext.Provider value={details}>
-        <ProgressNav showStep={showStep} />
+        <ProgressNavOld showStep={showStep} />
         <div className="components-container">
           {details?.step1?.active ? <PersonalDetails setDetails={step1} /> : ""}
           {details?.step2?.active ? (

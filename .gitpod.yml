@@ -4,6 +4,12 @@
 
 image: gitpod/workspace-postgres
 
+vscode:
+  extensions:
+    - esbenp.prettier-vscode
+    - dbaeumer.vscode-eslint
+    - streetsidesoftware.code-spell-checker
+
 tasks:
   - name: node server
     before: npm install nodemon --global

@@ -1,6 +1,7 @@
 const LoginPage = ({ setShowComponent }) => {
   return (
-    <div className="login">
+    <div className="home-page">
+      <div className="login">
       <p>Application Form Coded With React</p>
       <div className="login-buttons">
         <button
@@ -17,6 +18,8 @@ const LoginPage = ({ setShowComponent }) => {
         <button className="the-button">Dashboard</button>
       </div>
     </div>
+    </div>
+    
   );
 };
 
