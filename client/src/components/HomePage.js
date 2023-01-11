@@ -9,13 +9,11 @@ const HomePage = () => {
   });
 
   return (
-    <div className="bg-small">
-      <div className="home-page">
+    <div className="bg-small">      
         {showComponent.showLogin && (
           <LoginPage setShowComponent={setShowComponent} />
         )}
-        {showComponent.showApplicationForm && <ApplicationForm />}
-      </div>
+        {showComponent.showApplicationForm && <ApplicationForm />}      
     </div>
   );
 };
