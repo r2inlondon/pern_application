@@ -5,10 +5,18 @@
 image: gitpod/workspace-postgres
 
 tasks:
-  - init: npm install
-  - command: nodemon index
-    
+  - name: node server
+    before: npm install nodemon --global
+    init: npm install
+    command: nodemon index
+
+  - name: start react
+    command: |
+      cd client && npm install
+      npm start
+
 ports:
-  - port: 5000
-    
-  
+  - name: react-ports
+    port: 3000
+    visibility: public
+    onOpen: open-browser
