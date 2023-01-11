@@ -1,6 +1,11 @@
 import "animate.css";
 
-const Summary = ({ setShowComponent, answers, expandBackground }) => {
+const Summary = ({
+  setShowComponent,
+  setStepsCompleted,
+  answers,
+  expandBackground,
+}) => {
   const {
     firstName,
     lastName,
@@ -13,6 +18,12 @@ const Summary = ({ setShowComponent, answers, expandBackground }) => {
 
   const endForm = async (e) => {
     e.preventDefault();
+
+    setStepsCompleted((prevState) => ({
+      ...prevState,
+      summary: true,
+    }));
+
     const response = await fetch("http://localhost:5000/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

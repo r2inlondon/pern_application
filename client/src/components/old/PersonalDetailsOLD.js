@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import { FormContext } from "./ApplicationForm";
+import { FormContext } from "./ApplicationFormOLD";
 
-const PersonalDetails = (props) => {
+const PersonalDetailsOld = (props) => {
   const details = useContext(FormContext);
 
   const [firstName, setFirstName] = useState(
@@ -112,4 +112,4 @@ const PersonalDetails = (props) => {
   );
 };
 
-export default PersonalDetails;
+export default PersonalDetailsOld;
