@@ -1,6 +1,10 @@
 import { useRef, useState } from "react";
 
-const PersonalDetailsForm = ({ setShowComponent, setAnswers }) => {
+const PersonalDetails = ({
+  setShowComponent,
+  setAnswers,
+  setStepsCompleted,
+}) => {
   const [gender, setGender] = useState("");
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -24,8 +28,13 @@ const PersonalDetailsForm = ({ setShowComponent, setAnswers }) => {
       email,
     }));
 
+    setStepsCompleted((prevState) => ({
+      ...prevState,
+      personalDetails: true,
+    }));
+
     setShowComponent({
-      personalDetailsForm: false,
+      personalDetails: false,
       survey: true,
       summary: false,
     });
@@ -94,4 +103,4 @@ const PersonalDetailsForm = ({ setShowComponent, setAnswers }) => {
   );
 };
 
-export default PersonalDetailsForm;
+export default PersonalDetails;

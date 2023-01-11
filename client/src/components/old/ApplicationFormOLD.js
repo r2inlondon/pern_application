@@ -1,7 +1,7 @@
 import { useState, createContext } from "react";
 import StartEnd from "./StartEnd";
 import ProgressNavOld from "./ProgressNav_OLD";
-import PersonalDetails from "./PersonalDetails";
+import PersonalDetailsOld from "./PersonalDetailsOLD";
 import AddressDetails from "./AddressDetails";
 import Survey from "./Survey";
 import Summary from "./Summary";
@@ -9,7 +9,7 @@ import { expandBackground } from "../js-functions/transparent-bg";
 
 export const FormContext = createContext();
 
-const ApplicationForm = () => {
+const ApplicationFormOld = () => {
   const [details, setDetails] = useState({
     step0: {
       section: "Start",
@@ -134,7 +134,11 @@ const ApplicationForm = () => {
       <FormContext.Provider value={details}>
         <ProgressNavOld showStep={showStep} />
         <div className="components-container">
-          {details?.step1?.active ? <PersonalDetails setDetails={step1} /> : ""}
+          {details?.step1?.active ? (
+            <PersonalDetailsOld setDetails={step1} />
+          ) : (
+            ""
+          )}
           {details?.step2?.active ? (
             <AddressDetails setAddressDetails={step2} />
           ) : (
@@ -148,4 +152,4 @@ const ApplicationForm = () => {
   );
 };
 
-export default ApplicationForm;
+export default ApplicationFormOld;

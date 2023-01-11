@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Survey = ({ setAnswers, setShowComponent }) => {
+const Survey = ({ setAnswers, setStepsCompleted, setShowComponent }) => {
   const [music, setMusic] = useState("Pop");
   const [pet, setPet] = useState("Cat person");
   const [food, setFood] = useState("Yes");
@@ -13,6 +13,11 @@ const Survey = ({ setAnswers, setShowComponent }) => {
       question1: music,
       question2: pet,
       question3: food,
+    }));
+
+    setStepsCompleted((prevState) => ({
+      ...prevState,
+      survey: true,
     }));
 
     setShowComponent({
