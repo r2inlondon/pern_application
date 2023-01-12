@@ -1,12 +1,10 @@
-const ProgressNav = ({stepsCompleted , showComponent, jumpBack}) => {
-    
+const ProgressNav = ({ stepsCompleted, showComponent, jumpBack }) => {
   const showStep = (e) => {
     e.preventDefault();
 
     const stepSelected = e.target.getAttribute("data-step-num");
 
-    jumpBack(stepSelected)
-            
+    jumpBack(stepSelected);
   };
 
   return (
@@ -14,43 +12,42 @@ const ProgressNav = ({stepsCompleted , showComponent, jumpBack}) => {
       <div className="nav">
         <div className="progress">
           <div className="steps">
-           {stepsCompleted.personalDetails && (
-             <button
-             key={1}
-             data-step-num="personalDetails"
-             className="button-completed"
-             onClick={showStep}
-           ></button>
-           )}
+            {stepsCompleted.personalDetails && (
+              <button
+                key={1}
+                data-step-num="personalDetails"
+                className="button-completed"
+                onClick={showStep}
+              ></button>
+            )}
 
-            {/* <div className="active" /> */}
+            {showComponent.personalDetails && <div className="active" />}
           </div>
           <div className="line"></div>
           <div className="steps">
-            {stepsCompleted.survey && 
+            {stepsCompleted.survey && (
               <button
-              key={2}
-              data-step-num="survey"
-              className="button-completed"
-              onClick={showStep}
-            ></button>
-            }            
-            {/* <div className="active" /> */}
+                key={2}
+                data-step-num="survey"
+                className="button-completed"
+                onClick={showStep}
+              ></button>
+            )}
+            {showComponent.survey && <div className="active" />}
           </div>
           <div className="line"></div>
           <div className="steps">
             {stepsCompleted.summary && (
               <button
-              key={3}
-              data-step-num="summary"
-              className="button-completed"
-              onClick={showStep}
-            ></button>
+                key={3}
+                data-step-num="summary"
+                className="button-completed"
+                onClick={showStep}
+              ></button>
             )}
-            
-            {/* <div className="active" /> */}
+
+            {showComponent.summary && <div className="active" />}
           </div>
-          
         </div>
         <div className="progress-txt-container">
           <div className="progress-txt">
@@ -62,7 +59,6 @@ const ProgressNav = ({stepsCompleted , showComponent, jumpBack}) => {
           <div className="progress-txt">
             <p>Summary</p>
           </div>
-         
         </div>
       </div>
     </div>

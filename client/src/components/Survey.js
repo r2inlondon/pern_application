@@ -18,6 +18,7 @@ const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
     setStepsCompleted((prevState) => ({
       ...prevState,
       survey: true,
+      summary: true,
     }));
 
     setShowComponent({
