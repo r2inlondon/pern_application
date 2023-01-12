@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-const Survey = ({ setAnswers, setStepsCompleted, setShowComponent }) => {
-  const [music, setMusic] = useState("Pop");
-  const [pet, setPet] = useState("Cat person");
-  const [food, setFood] = useState("Yes");
+const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
+  const [music, setMusic] = useState(answersObject.questions.question1);
+  const [pet, setPet] = useState(answersObject.questions.question2);
+  const [food, setFood] = useState(answersObject.questions.question3);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    setAnswers((prevState) => ({
+    answersObject.action((prevState) => ({
       ...prevState,
       question1: music,
       question2: pet,

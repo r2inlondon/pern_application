@@ -2,25 +2,20 @@ import { useRef, useState } from "react";
 
 const PersonalDetails = ({
   setShowComponent,
-  setAnswers,
+  answersObject,
   setStepsCompleted,
 }) => {
-  const [gender, setGender] = useState("");
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const maleRef = useRef();
-  const femaleRef = useRef();
-  const emailRef = useRef();
+  const [firstName, setFirstName] = useState(answersObject.questions.firstName);
+  const [lastName, setLastName] = useState(answersObject.questions.lastName);
+  const [gender, setGender] = useState(answersObject.questions.gender);
+  const [email, setEmail] = useState(answersObject.questions.email);
+
+  console.log(answersObject.questions.firstName);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const firstName = firstNameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const gender = femaleRef.current.checked ? "female" : "male";
-    const email = emailRef.current.value;
-
-    setAnswers((prevState) => ({
+    answersObject.action((prevState) => ({
       ...prevState,
       firstName,
       lastName,
@@ -52,7 +47,8 @@ const PersonalDetails = ({
               required
               id="firstName"
               name="firstName"
-              ref={firstNameRef}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
 
@@ -64,7 +60,8 @@ const PersonalDetails = ({
               required
               id="lastName"
               name="lastName"
-              ref={lastNameRef}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
         </div>
@@ -76,7 +73,6 @@ const PersonalDetails = ({
               type="radio"
               checked={gender === "male"}
               onChange={(e) => setGender("male")}
-              ref={maleRef}
             />
             Male
           </label>
@@ -86,14 +82,20 @@ const PersonalDetails = ({
               type="radio"
               checked={gender === "female"}
               onChange={(e) => setGender("female")}
-              ref={femaleRef}
             />
             Female
           </label>
         </div>
         <label>Email</label>
         <br />
-        <input type="email" required id="email" name="email" ref={emailRef} />
+        <input
+          type="email"
+          required
+          id="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <br />
         <div className="next">
           <input type="submit" value="SAVE" className="the-button" />

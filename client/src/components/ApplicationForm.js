@@ -12,11 +12,11 @@ const ApplicationForm = () => {
     summary: false,
   });
 
-  const [stepsCompleted, setStepsCompleted ] = useState({
+  const [stepsCompleted, setStepsCompleted] = useState({
     personalDetails: false,
     survey: false,
     summary: false,
-  })
+  });
 
   const [answers, setAnswers] = useState({
     firstName: "",
@@ -28,18 +28,22 @@ const ApplicationForm = () => {
     question3: "",
   });
 
+  const answersObject = {
+    questions: answers,
+    action: setAnswers,
+  };
+
   const jumpBack = (stepSelected) => {
+    const copyShowComponent = { ...stepsCompleted };
 
-    const copyOfStepsState = {...stepsCompleted}
+    let allStepsKeysArray = Object.keys(copyShowComponent);
 
-    let allStepsKeysArray = Object.keys(copyOfStepsState);
+    allStepsKeysArray.map((step) => (copyShowComponent[step] = false));
 
-    allStepsKeysArray.map(step => copyOfStepsState[step] = false )
+    copyShowComponent[stepSelected] = true;
 
-    copyOfStepsState[stepSelected] = true;
-    
-    console.log(copyOfStepsState)
-  } 
+    setShowComponent(copyShowComponent);
+  };
 
   useEffect(() => {
     expandBackground();
@@ -47,30 +51,30 @@ const ApplicationForm = () => {
 
   return (
     <Fragment>
-      <ProgressNav 
-        showComponent={showComponent} 
+      <ProgressNav
+        showComponent={showComponent}
         stepsCompleted={stepsCompleted}
         jumpBack={jumpBack}
-        />
-        <div className="home-page">
+      />
+      <div className="home-page">
         {showComponent.personalDetails && (
-        <PersonalDetails          
-          setAnswers={setAnswers}
-          setStepsCompleted={setStepsCompleted}
-          setShowComponent={setShowComponent}
-        />
-      )}
-      {showComponent.survey && (
-        <Survey          
-          setAnswers={setAnswers}
-          setStepsCompleted={setStepsCompleted}
-          setShowComponent={setShowComponent}
-        />
-      )}
-      {showComponent.summary && (
-        <Summary setShowComponent={setShowComponent} answers={answers} />
-      )}
-        </div>
+          <PersonalDetails
+            answersObject={answersObject}
+            setStepsCompleted={setStepsCompleted}
+            setShowComponent={setShowComponent}
+          />
+        )}
+        {showComponent.survey && (
+          <Survey
+            answersObject={answersObject}
+            setStepsCompleted={setStepsCompleted}
+            setShowComponent={setShowComponent}
+          />
+        )}
+        {showComponent.summary && (
+          <Summary setShowComponent={setShowComponent} answers={answers} />
+        )}
+      </div>
     </Fragment>
   );
 };
