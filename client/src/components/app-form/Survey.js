@@ -1,9 +1,21 @@
 import { useState } from "react";
 
 const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
-  const [music, setMusic] = useState(answersObject.questions.question1);
-  const [pet, setPet] = useState(answersObject.questions.question2);
-  const [food, setFood] = useState(answersObject.questions.question3);
+  const [music, setMusic] = useState(
+    answersObject.questions.question1
+      ? answersObject.questions.question1
+      : "Metal"
+  );
+  const [pet, setPet] = useState(
+    answersObject.questions.question2
+      ? answersObject.questions.question2
+      : "Dog Person"
+  );
+  const [food, setFood] = useState(
+    answersObject.questions.question3
+      ? answersObject.questions.question3
+      : "Yes"
+  );
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -42,9 +54,9 @@ const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
                 value={music}
                 onChange={(e) => setMusic(e.target.value)}
               >
-                <option value="Linkedin">Metal</option>
-                <option value="Gumtree">Hip-Hop</option>
-                <option value="Newspaper">Pop</option>
+                <option value="Metal">Metal</option>
+                <option value="Hip-Hop">Hip-Hop</option>
+                <option value="Pop">Pop</option>
               </select>
             </div>
           </div>
@@ -71,7 +83,6 @@ const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
             <div className="survey-txt">
               <label className="survey-txt">Are you a vegetarian ? </label>
             </div>
-
             <div className="select">
               <select
                 id="select"

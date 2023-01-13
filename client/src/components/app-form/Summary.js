@@ -1,12 +1,7 @@
 import "animate.css";
 import { createCandidate } from "../../api/api-calls";
 
-const Summary = ({
-  setShowComponent,
-  setStepsCompleted,
-  answers,
-  expandBackground,
-}) => {
+const Summary = ({ setShowComponent, answers }) => {
   const {
     firstName,
     lastName,
@@ -17,10 +12,14 @@ const Summary = ({
     question3,
   } = answers;
 
+  console.log(answers);
+
   const endForm = async (e) => {
     e.preventDefault();
 
-    await createCandidate(answers);
+    const result = await createCandidate(answers);
+
+    console.log(result);
   };
 
   return (
