@@ -26,6 +26,14 @@
   transition: all 0.5s;
 }
 
+.bg-bigger {
+  width: 140rem;
+  height: 90vh;
+  background-color: $transparent-background;
+  border-radius: 1%;
+  transition: all 0.5s;
+}
+
 .components-container {
   display: flex;
   align-items: center;

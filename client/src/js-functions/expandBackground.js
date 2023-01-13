@@ -1,4 +1,4 @@
-export const expandBackground = () => {
+export const expandBackground = (compSize) => {
   const sBackground = document.querySelector(".bg-small");
 
   // sBackground.style.width = "80rem";
@@ -6,7 +6,7 @@ export const expandBackground = () => {
   // sBackground.style.transition = "all .5s";
 
   const toogleIt = () => {
-    sBackground.classList.toggle("bg-big");
+    sBackground.classList.toggle(compSize);
   };
 
   toogleIt();
