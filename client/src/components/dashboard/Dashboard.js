@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { expandBackground } from "../../utils/expandBackground";
-import { Table } from "antd";
+import { Table, Button, Space } from "antd";
 
 import { getCandidates } from "../../api/api-calls";
 
@@ -49,6 +49,33 @@ const Dashboard = () => {
       dataIndex: "question3",
       key: "question3",
     },
+    {
+      title: "Actions",
+      render: (_, record) => {
+        return (
+          <Space>
+            <Button
+              size="small"
+              type="primary"
+              ghost
+              onClick={(e) => console.log(record)}
+            >
+              Edit
+            </Button>
+
+            <Button
+              size="small"
+              type="primary"
+              danger
+              ghost
+              onClick={(e) => console.log(e.target)}
+            >
+              Delete
+            </Button>
+          </Space>
+        );
+      },
+    },
   ];
 
   useEffect(() => {
@@ -56,11 +83,14 @@ const Dashboard = () => {
     getData();
   }, []);
   return (
-    <Table
-      dataSource={candidates}
-      columns={columns}
-      rowKey={(obj) => obj.c_id}
-    />
+    <Fragment>
+      <h1>Admin Dashboard</h1>
+      <Table
+        dataSource={candidates}
+        columns={columns}
+        rowKey={(obj) => obj.c_id}
+      />
+    </Fragment>
   );
 };
 
