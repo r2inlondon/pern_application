@@ -1,28 +1,22 @@
 import { useEffect, useState } from "react";
-import { expandBackground } from "../../js-functions/expandBackground";
+import { expandBackground } from "../../utils/expandBackground";
+import CandidatesTable from "./CandidatesTable";
+import { getCandidates } from "../../api/api-calls";
 
 const Dashboard = () => {
   const [candidates, setCandidates] = useState("");
 
-  const getCandidates = async () => {
-    const res = await fetch("http://localhost:5000/candidates");
-
-    const candidatesArray = await res.json();
+  const getData = async () => {
+    const candidatesArray = await getCandidates();
 
     setCandidates(candidatesArray);
-    try {
-    } catch (err) {
-      console.error(err);
-    }
-
-    return candidatesArray;
   };
 
   useEffect(() => {
     expandBackground("bg-bigger");
-    getCandidates();
+    getData();
   }, []);
-  return <h1>Dashboard</h1>;
+  return <CandidatesTable />;
 };
 
 export default Dashboard;

@@ -1,4 +1,5 @@
 import "animate.css";
+import { createCandidate } from "../../api/api-calls";
 
 const Summary = ({
   setShowComponent,
@@ -19,27 +20,13 @@ const Summary = ({
   const endForm = async (e) => {
     e.preventDefault();
 
-    setStepsCompleted((prevState) => ({
-      ...prevState,
-      summary: true,
-    }));
-
-    const response = await fetch("http://localhost:5000/new", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(answers),
-    });
-    console.log(response);
-    try {
-    } catch (err) {
-      console.error(err);
-    }
+    await createCandidate(answers);
   };
 
   return (
     <div className="summary">
       <p className="summary-instructions animate__animated animate__shakeX animate__delay-1s">
-        Click on the above progress bar to amend your info.
+        Click on the above progress bar to amend your answers.
       </p>
       <p className="summary-title">Personal Details</p>
       <div className="black-line"></div>

@@ -1,5 +1,5 @@
 import { useEffect, Fragment, useState } from "react";
-import { expandBackground } from "../../js-functions/expandBackground";
+import { expandBackground } from "../../utils/expandBackground";
 import PersonalDetails from "./PersonalDetails";
 import Survey from "./Survey";
 import Summary from "./Summary";

@@ -10,8 +10,6 @@ const PersonalDetails = ({
   const [gender, setGender] = useState(answersObject.questions.gender);
   const [email, setEmail] = useState(answersObject.questions.email);
 
-  console.log(answersObject.questions.firstName);
-
   const onSubmit = (e) => {
     e.preventDefault();
 
