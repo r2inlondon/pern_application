@@ -55,7 +55,13 @@ const Dashboard = () => {
     expandBackground("bg-bigger");
     getData();
   }, []);
-  return <Table dataSource={candidates} columns={columns} />;
+  return (
+    <Table
+      dataSource={candidates}
+      columns={columns}
+      rowKey={(obj) => obj.c_id}
+    />
+  );
 };
 
 export default Dashboard;
