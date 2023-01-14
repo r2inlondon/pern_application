@@ -1,6 +1,7 @@
 import { useEffect, useState, Fragment } from "react";
 import { expandBackground } from "../../utils/expandBackground";
 import { Table, Button, Space } from "antd";
+import Loader from "../loader/Loader";
 
 import { getCandidates } from "../../api/api-calls";
 
@@ -85,11 +86,14 @@ const Dashboard = () => {
   return (
     <Fragment>
       <h1>Admin Dashboard</h1>
-      <Table
-        dataSource={candidates}
-        columns={columns}
-        rowKey={(obj) => obj.c_id}
-      />
+      {!candidates && <Loader />}
+      {candidates && (
+        <Table
+          dataSource={candidates}
+          columns={columns}
+          rowKey={(obj) => obj.c_id}
+        />
+      )}
     </Fragment>
   );
 };
