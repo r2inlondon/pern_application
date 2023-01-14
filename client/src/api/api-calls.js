@@ -1,19 +1,19 @@
 export const getCandidates = async () => {
-  let candidatesArray = [];
+  let resArray = [];
   try {
     const res = await fetch("http://localhost:5000/candidates");
-    candidatesArray = await res.json();
+    resArray = await res.json();
   } catch (err) {
     console.error(err);
   }
 
-  return candidatesArray;
+  return resArray;
 };
 
 export const createCandidate = async (answers) => {
-  let newCandidate = "";
+  let res = "";
   try {
-    newCandidate = await fetch("http://localhost:5000/new", {
+    res = await fetch("http://localhost:5000/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(answers),
@@ -22,5 +22,19 @@ export const createCandidate = async (answers) => {
     console.error(err);
   }
 
-  return newCandidate;
+  return res;
+};
+
+export const updateCandidate = async (id, data) => {
+  let res = "";
+  try {
+    res = await fetch(`http://localhost:5000/candidates/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  } catch (err) {
+    console.error(err);
+  }
+  return res;
 };

@@ -10,7 +10,7 @@ import {
   InputNumber,
 } from "antd";
 import Loader from "../loader/Loader";
-import { getCandidates } from "../../api/api-calls";
+import { getCandidates, updateCandidate } from "../../api/api-calls";
 
 const EditableCell = ({
   editing,
@@ -53,7 +53,6 @@ const Dashboard = () => {
   const [editingKey, setEditingKey] = useState("");
   const isEditing = (record) => record.c_id === editingKey;
   const edit = (record) => {
-    console.log(record);
     form.setFieldsValue({
       firstname: "",
       lastname: "",
@@ -69,27 +68,13 @@ const Dashboard = () => {
   };
 
   const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const copyCandidates = [...candidates];
-      const index = copyCandidates.findIndex((item) => key === item.c_id);
+    const dataToUpdate = await form.validateFields();
+    const oldData = candidates.find((item) => key === item.c_id);
+    const newData = { ...oldData, ...dataToUpdate };
 
-      if (index > -1) {
-        const item = copyCandidates[index];
-        copyCandidates.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        setCandidates(copyCandidates);
-        setEditingKey("");
-      } else {
-        copyCandidates.push(row);
-        setCandidates(copyCandidates);
-        setEditingKey("");
-      }
-    } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
-    }
+    const res = await updateCandidate(key, newData);
+
+    console.log(res);
   };
 
   const getData = async () => {
