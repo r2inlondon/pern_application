@@ -74,7 +74,8 @@ const Dashboard = () => {
 
     const res = await updateCandidate(key, newData);
 
-    console.log(res);
+    getData();
+    setEditingKey("");
   };
 
   const getData = async () => {
