@@ -30,6 +30,7 @@ const newCandidate = async (req, res) => {
     res.json("Candidate was created !");
   } catch (err) {
     console.error(err.message);
+    res.json(err.detail);
   }
 };
 
@@ -52,6 +53,7 @@ const getOneCandidate = async (req, res) => {
     res.json(candidate.rows);
   } catch (err) {
     console.error(err);
+    res.json(err.detail);
   }
 };
 
@@ -87,6 +89,7 @@ const updateCandidate = async (req, res) => {
     res.json("Candidate has been UPDATED");
   } catch (err) {
     console.error(err.message);
+    res.json(err.detail);
   }
 };
 
@@ -97,6 +100,7 @@ const deleteCandidate = async (req, res) => {
     res.json("Candidate has been DELETED");
   } catch (err) {
     console.error(err);
+    res.json(err.detail);
   }
 };
 
