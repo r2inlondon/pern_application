@@ -13,8 +13,6 @@ const PersonalDetails = ({
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(e.target.lastChild);
-
     answersObject.action((prevState) => ({
       ...prevState,
       firstName,

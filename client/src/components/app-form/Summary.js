@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import "animate.css";
 import { createCandidate } from "../../api/api-calls";
 import Loader from "../loader/Loader";
+import { expandBackground } from "../../utils/expandBackground";
 
 const Summary = ({ handleComponents, answers }) => {
   const [loading, setLoading] = useState(false);
@@ -17,72 +18,80 @@ const Summary = ({ handleComponents, answers }) => {
   } = answers;
 
   const onSubmit = async (e) => {
-    const nextComp = e.target.getAttribute("data-next");
-
     e.preventDefault();
+
+    const nextComp = e.target.getAttribute("data-next");
+    handleComponents(nextComp);
+    expandBackground("bg-big");
     setLoading(true);
     const result = await createCandidate(answers);
     setLoading(false);
-    handleComponents(nextComp);
+    console.log(result.status);
   };
 
   return (
     <Fragment>
-      {loading && <Loader loaderTxt={"Submiting Form"} />}
+      {loading && (
+        <div className="loader-style-summary">
+          <Loader loaderTxt={"Submiting Form"} />
+        </div>
+      )}
       {!loading && (
-        <div className="summary">
-          <p className="summary-instructions animate__animated animate__shakeX animate__delay-1s">
-            Click on the above progress bar to amend your answers.
-          </p>
-          <p className="summary-title">Personal Details</p>
-          <div className="black-line"></div>
-          <div className="personal-details">
-            <div className="inputs-container">
-              <div className="two-inputs">
-                <p className="field-title">First name</p>
-                <p>{firstName}</p>
+        <div className="summary-page">
+          <div className="summary-box">
+            <p className="summary-instructions animate__animated animate__shakeX animate__delay-1s">
+              Click on the above progress bar to amend your answers.
+            </p>
+            <p className="summary-title">Personal Details</p>
+            <div className="black-line"></div>
+            <div className="personal-details">
+              <div className="inputs-container">
+                <div className="two-inputs">
+                  <p className="field-title">First name</p>
+                  <p>{firstName}</p>
+                </div>
+                <div className="two-inputs">
+                  <p className="field-title">Last name</p>
+                  <p>{lastName}</p>
+                </div>
+                <div className="">
+                  <p className="field-title">Gender</p>
+                  <p>{gender}</p>
+                </div>
               </div>
-              <div className="two-inputs">
-                <p className="field-title">Last name</p>
-                <p>{lastName}</p>
-              </div>
-              <div className="">
-                <p className="field-title">Gender</p>
-                <p>{gender}</p>
+              <div className="inputs-container">
+                <div className="">
+                  <p className="field-title">Email</p>
+                  <p>{email}</p>
+                </div>
               </div>
             </div>
-            <div className="inputs-container">
-              <div className="">
-                <p className="field-title">Email</p>
-                <p>{email}</p>
-              </div>
-            </div>
-          </div>
 
-          <h2 className="summary-title"> Survey</h2>
-          <div className="black-line"></div>
-          <div className="survey">
-            <div className="inputs-container">
-              <p className="field-title">What kind of music do you prefer?</p>
-              <p>{question1}</p>
+            <h2 className="summary-title"> Survey</h2>
+            <div className="black-line"></div>
+            <div className="survey-summary">
+              <div className="inputs-container">
+                <p className="field-title">What kind of music do you prefer?</p>
+                <p>{question1}</p>
+              </div>
+              <div className="inputs-container">
+                <p className="field-title">Would you say that you are a </p>
+                <p>{question2}</p>
+              </div>
+              <div className="inputs-container">
+                <p className="field-title">Are you vegetarian? </p>
+                <p>{question3}</p>
+              </div>
             </div>
-            <div className="inputs-container">
-              <p className="field-title">Would you say that you are a </p>
-              <p>{question2}</p>
+            <div className="next">
+              <button
+                className="the-button"
+                data-next="formEnds"
+                onClick={onSubmit}
+              >
+                Submit Form
+              </button>
             </div>
-            <div className="inputs-container">
-              <p className="field-title">Are you vegetarian? </p>
-              <p>{question3}</p>
-            </div>
-          </div>
-          <div className="next">
-            <button
-              className="the-button"
-              data-next="formEnds"
-              onClick={onSubmit}
-            >
-              Submit Form
-            </button>
           </div>
         </div>
       )}

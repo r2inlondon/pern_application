@@ -8,10 +8,11 @@ import FormEnds from "./FormEnds";
 
 const ApplicationForm = ({ componentsObject }) => {
   const [showComponent, setShowComponent] = useState({
+    progressNav: true,
     personalDetails: true,
     survey: false,
     summary: false,
-    formEds: false,
+    formEds: true,
   });
 
   const [stepsCompleted, setStepsCompleted] = useState({
@@ -41,6 +42,7 @@ const ApplicationForm = ({ componentsObject }) => {
     let allStepsKeysArray = Object.keys(copyShowComponent);
     allStepsKeysArray.map((step) => (copyShowComponent[step] = false));
     copyShowComponent[stepSelected] = true;
+    copyShowComponent.progressNav = true;
     setShowComponent(copyShowComponent);
   };
 
@@ -48,7 +50,9 @@ const ApplicationForm = ({ componentsObject }) => {
     const copyShowComponent = { ...showComponent };
     const allShowCompoentKeys = Object.keys(copyShowComponent);
     allShowCompoentKeys.map((comp) => (copyShowComponent[comp] = false));
+
     copyShowComponent[nextComp] = true;
+    copyShowComponent.progressNav = nextComp === "formEnds" ? false : true;
 
     setShowComponent(copyShowComponent);
   };
@@ -59,11 +63,14 @@ const ApplicationForm = ({ componentsObject }) => {
 
   return (
     <Fragment>
-      <ProgressNav
-        showComponent={showComponent}
-        stepsCompleted={stepsCompleted}
-        jumpBack={jumpBack}
-      />
+      {showComponent.progressNav && (
+        <ProgressNav
+          showComponent={showComponent}
+          stepsCompleted={stepsCompleted}
+          jumpBack={jumpBack}
+        />
+      )}
+
       <div className="home-page">
         {showComponent.personalDetails && (
           <PersonalDetails

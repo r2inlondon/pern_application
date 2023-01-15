@@ -1,4 +1,12 @@
-.summary {
+.summary-page {
+  width: 100%;
+  height: 53rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary-box {
   width: $summary-width;
 }
 
@@ -9,6 +17,7 @@
 
 .summary-title {
   margin-top: 3rem;
+  margin-bottom: 1rem;
   font-size: $font-size-regular;
   font-weight: bold;
 }
@@ -23,6 +32,10 @@
   opacity: 0.6;
 }
 
-.survey {
-  margin-top: 1rem;
+.survey-summary {
+  margin-bottom: 4rem;
 }
+
+// .loader-style-summary {
+//   height: 10rem;
+// }
