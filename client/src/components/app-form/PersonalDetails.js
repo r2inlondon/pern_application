@@ -61,26 +61,30 @@ const PersonalDetails = ({
             />
           </div>
         </div>
-        <div className="radio">
+        <div className="radio-box">
           <p>Gender</p>
-          <label>
+          <div className="radio">
             <input
-              className="radio-b"
+              id="radio"
               type="radio"
               checked={gender === "Male"}
               onChange={(e) => setGender("Male")}
             />
-            Male
-          </label>
-          <label>
+            <label htmlFor="radio" className="radio-label">
+              Male
+            </label>
+          </div>
+          <div className="radio">
             <input
-              className="radio-b"
+              id="radio-2"
               type="radio"
               checked={gender === "Female"}
               onChange={(e) => setGender("Female")}
             />
-            Female
-          </label>
+            <label htmlFor="radio-2" className="radio-label">
+              Female
+            </label>
+          </div>
         </div>
         <label>Email</label>
         <br />
