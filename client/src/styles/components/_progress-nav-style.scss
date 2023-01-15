@@ -1,6 +1,7 @@
 .nav {
   margin: auto;
-  padding-top: 1rem;
+  margin-bottom: 4rem;
+  padding-top: 6rem;
   width: 400px;
   height: 110px;
 }
@@ -75,7 +76,7 @@
 }
 
 .line {
-  width: 60px;
+  width: 90px;
   height: 1px;
   background-color: $steps-color;
 }

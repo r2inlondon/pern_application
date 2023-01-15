@@ -3,7 +3,7 @@ import { expandBackground } from "../../utils/expandBackground";
 import PersonalDetails from "./PersonalDetails";
 import Survey from "./Survey";
 import Summary from "./Summary";
-import ProgressNav from "./ProgresNav";
+import ProgressNav from "./ProgressNav";
 import FormEnds from "./FormEnds";
 
 const ApplicationForm = ({ componentsObject }) => {
