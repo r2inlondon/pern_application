@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const PersonalDetails = ({
-  setShowComponent,
+  handleComponents,
   answersObject,
   setStepsCompleted,
 }) => {
@@ -12,6 +12,8 @@ const PersonalDetails = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    const nextComp = e.target.getAttribute("data-next");
 
     answersObject.action((prevState) => ({
       ...prevState,
@@ -26,11 +28,7 @@ const PersonalDetails = ({
       personalDetails: true,
     }));
 
-    setShowComponent({
-      personalDetails: false,
-      survey: true,
-      summary: false,
-    });
+    handleComponents(nextComp);
   };
 
   return (
@@ -69,8 +67,8 @@ const PersonalDetails = ({
             <input
               className="radio-b"
               type="radio"
-              checked={gender === "male"}
-              onChange={(e) => setGender("male")}
+              checked={gender === "Male"}
+              onChange={(e) => setGender("Male")}
             />
             Male
           </label>
@@ -78,8 +76,8 @@ const PersonalDetails = ({
             <input
               className="radio-b"
               type="radio"
-              checked={gender === "female"}
-              onChange={(e) => setGender("female")}
+              checked={gender === "Female"}
+              onChange={(e) => setGender("Female")}
             />
             Female
           </label>
@@ -96,7 +94,9 @@ const PersonalDetails = ({
         />
         <br />
         <div className="next">
-          <input type="submit" value="SAVE" className="the-button" />
+          <button data-next="survey" className="the-button" onClick={onSubmit}>
+            Next
+          </button>
         </div>
       </form>
     </div>

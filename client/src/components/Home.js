@@ -15,12 +15,12 @@ const Home = () => {
     comp: showComponent,
   };
 
-  const sampleFn = () => {};
-
   return (
     <div className="bg-small">
       {showComponent.login && <LoginPage componentsObject={componentsObject} />}
-      {showComponent.applicationForm && <ApplicationForm />}
+      {showComponent.applicationForm && (
+        <ApplicationForm componentsObject={componentsObject} />
+      )}
       {showComponent.dashboard && (
         <Dashboard componentsObject={componentsObject} />
       )}
