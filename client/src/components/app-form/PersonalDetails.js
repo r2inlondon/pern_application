@@ -13,7 +13,7 @@ const PersonalDetails = ({
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const nextComp = e.target.getAttribute("data-next");
+    console.log(e.target.lastChild);
 
     answersObject.action((prevState) => ({
       ...prevState,
@@ -28,7 +28,7 @@ const PersonalDetails = ({
       personalDetails: true,
     }));
 
-    handleComponents(nextComp);
+    handleComponents("survey");
   };
 
   return (
@@ -100,13 +100,7 @@ const PersonalDetails = ({
           />
 
           <div className="next">
-            <button
-              data-next="survey"
-              className="the-button"
-              onClick={onSubmit}
-            >
-              Next
-            </button>
+            <input className="the-button" value="Next" type="submit" />
           </div>
         </form>
       </div>
