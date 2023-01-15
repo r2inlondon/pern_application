@@ -38,3 +38,17 @@ export const updateCandidate = async (id, data) => {
   }
   return res;
 };
+
+export const deleteCandidate = async (id) => {
+  let res = "";
+  try {
+    res = await fetch(`http://localhost:5000/candidates/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    console.error(err);
+  }
+
+  return res;
+};

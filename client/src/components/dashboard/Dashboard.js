@@ -8,9 +8,14 @@ import {
   Typography,
   Input,
   InputNumber,
+  Popconfirm,
 } from "antd";
 import Loader from "../loader/Loader";
-import { getCandidates, updateCandidate } from "../../api/api-calls";
+import {
+  getCandidates,
+  updateCandidate,
+  deleteCandidate,
+} from "../../api/api-calls";
 
 const EditableCell = ({
   editing,
@@ -68,7 +73,7 @@ const Dashboard = () => {
     setEditingKey("");
   };
 
-  const save = async (key) => {
+  const handleSave = async (key) => {
     const copyCandidates = [...candidates];
     setCandidates("");
     setLoaderTxt("Updating Record");
@@ -80,6 +85,13 @@ const Dashboard = () => {
 
     getData();
     setEditingKey("");
+  };
+
+  const handleDelete = async (id) => {
+    // setLoaderTxt("Deleting Record");
+    // setCandidates("");
+    const res = await deleteCandidate(id);
+    getData();
   };
 
   const getData = async () => {
@@ -137,7 +149,7 @@ const Dashboard = () => {
           <span>
             <Typography.Link
               style={{ marginRight: 8 }}
-              onClick={() => save(record.c_id)}
+              onClick={() => handleSave(record.c_id)}
             >
               Save
             </Typography.Link>
@@ -147,12 +159,21 @@ const Dashboard = () => {
             </Space>
           </span>
         ) : (
-          <Typography.Link
-            disabled={editingKey !== ""}
-            onClick={() => edit(record)}
-          >
-            Edit
-          </Typography.Link>
+          <span>
+            <Typography.Link
+              disabled={editingKey !== ""}
+              onClick={() => edit(record)}
+              style={{ marginRight: 8 }}
+            >
+              Edit
+            </Typography.Link>
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => handleDelete(record.c_id)}
+            >
+              <Typography.Link>Delete</Typography.Link>
+            </Popconfirm>
+          </span>
         );
       },
     },
