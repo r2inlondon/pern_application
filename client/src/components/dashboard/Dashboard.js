@@ -52,7 +52,7 @@ const EditableCell = ({
   );
 };
 
-const Dashboard = () => {
+const Dashboard = ({ componentsObject }) => {
   const [loaderTxt, setLoaderTxt] = useState("Loading");
   const [candidates, setCandidates] = useState("");
   const [form] = Form.useForm();
@@ -67,6 +67,15 @@ const Dashboard = () => {
       ...record,
     });
     setEditingKey(record.c_id);
+  };
+
+  const handleLogout = () => {
+    expandBackground("bg-bigger");
+    componentsObject.action({
+      login: true,
+      applicationForm: false,
+      dashboard: false,
+    });
   };
 
   const cancel = () => {
@@ -202,7 +211,14 @@ const Dashboard = () => {
 
   return (
     <Fragment>
-      <h1>Admin Dashboard</h1>
+      <div className="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <Popconfirm title="Sure to Logout?" onConfirm={handleLogout}>
+          <Button type="primary" ghost>
+            Logout
+          </Button>
+        </Popconfirm>
+      </div>
       {!candidates && <Loader loaderTxt={loaderTxt} />}
       {candidates && (
         <Form form={form} component={false}>
