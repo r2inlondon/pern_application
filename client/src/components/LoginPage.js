@@ -11,8 +11,8 @@ const LoginPage = ({ componentsObject }) => {
   };
 
   return (
-    <div className="home-page">
-      <div className="login">
+    <div className="login-page">
+      <div className="login-box">
         <p>
           Click on user to start filling the form or Login to the admin
           dashboard

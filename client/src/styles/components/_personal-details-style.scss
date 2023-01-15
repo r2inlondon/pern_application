@@ -1,23 +1,44 @@
-.personal-d {
-  width: $component-width;
+.personal-page {
+  width: 100%;
+  height: 55rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: $summary-width;
+}
+
+.personal-form {
+  input[type="text"],
+  input[type="email"] {
+    font-family: $font-main;
+    font-size: $font-size-regular;
+    appearance: none;
+    text-decoration: none;
+    margin: 1rem 0;
+    width: 100%;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 5px;
+    border: $black-line;
+    padding-inline: 0.7rem;
+  }
+}
+
+.personal-email-input {
+  margin-bottom: 4rem !important;
 }
 
 .radio-box {
   text-align: center;
-  margin: 1.5rem 0;
+  margin: 5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.8rem;
 }
-
-// .radio p {
-//   margin: 1rem 0;
-// }
-
-// .radio-b {
-//   width: 3rem;
-// }
 
 .radio {
   margin: 0.5rem;
