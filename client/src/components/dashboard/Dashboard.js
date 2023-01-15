@@ -48,6 +48,7 @@ const EditableCell = ({
 };
 
 const Dashboard = () => {
+  const [loaderTxt, setLoaderTxt] = useState("Loading");
   const [candidates, setCandidates] = useState("");
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
@@ -68,8 +69,11 @@ const Dashboard = () => {
   };
 
   const save = async (key) => {
+    const copyCandidates = [...candidates];
+    setCandidates("");
+    setLoaderTxt("Updating Record");
     const dataToUpdate = await form.validateFields();
-    const oldData = candidates.find((item) => key === item.c_id);
+    const oldData = copyCandidates.find((item) => key === item.c_id);
     const newData = { ...oldData, ...dataToUpdate };
 
     const res = await updateCandidate(key, newData);
@@ -178,7 +182,7 @@ const Dashboard = () => {
   return (
     <Fragment>
       <h1>Admin Dashboard</h1>
-      {!candidates && <Loader />}
+      {!candidates && <Loader loaderTxt={loaderTxt} />}
       {candidates && (
         <Form form={form} component={false}>
           <Table
