@@ -39,8 +39,8 @@ const Survey = ({ answersObject, setStepsCompleted, handleComponents }) => {
   };
 
   return (
-    <div className="survey">
-      <form onSubmit={onSubmit}>
+    <div className="survey-page">
+      <form className="form-survey" onSubmit={onSubmit}>
         <div className="options-container">
           <div className="question-container">
             <div className="survey-txt">
