@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
+const Survey = ({ answersObject, setStepsCompleted, handleComponents }) => {
   const [music, setMusic] = useState(
     answersObject.questions.question1
       ? answersObject.questions.question1
@@ -20,6 +20,8 @@ const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    const nextComp = e.target.getAttribute("data-next");
+
     answersObject.action((prevState) => ({
       ...prevState,
       question1: music,
@@ -33,11 +35,7 @@ const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
       summary: true,
     }));
 
-    setShowComponent({
-      personalDetailsForm: false,
-      survey: false,
-      summary: true,
-    });
+    handleComponents(nextComp);
   };
 
   return (
@@ -97,7 +95,9 @@ const Survey = ({ answersObject, setStepsCompleted, setShowComponent }) => {
         </div>
 
         <div className="next">
-          <input className="the-button" type="submit" value="SAVE"></input>
+          <button className="the-button" data-next="summary" onClick={onSubmit}>
+            Next
+          </button>
         </div>
       </form>
     </div>

@@ -4,12 +4,14 @@ import PersonalDetails from "./PersonalDetails";
 import Survey from "./Survey";
 import Summary from "./Summary";
 import ProgressNav from "./ProgresNav";
+import FormEnds from "./FormEnds";
 
-const ApplicationForm = () => {
+const ApplicationForm = ({ componentsObject }) => {
   const [showComponent, setShowComponent] = useState({
     personalDetails: true,
     survey: false,
     summary: false,
+    formEds: false,
   });
 
   const [stepsCompleted, setStepsCompleted] = useState({
@@ -21,7 +23,7 @@ const ApplicationForm = () => {
   const [answers, setAnswers] = useState({
     firstName: "",
     lastName: "",
-    gender: "",
+    gender: "Male",
     email: "",
     question1: "",
     question2: "",
@@ -37,10 +39,16 @@ const ApplicationForm = () => {
     const copyShowComponent = { ...stepsCompleted };
 
     let allStepsKeysArray = Object.keys(copyShowComponent);
-
     allStepsKeysArray.map((step) => (copyShowComponent[step] = false));
-
     copyShowComponent[stepSelected] = true;
+    setShowComponent(copyShowComponent);
+  };
+
+  const handleComponents = (nextComp) => {
+    const copyShowComponent = { ...showComponent };
+    const allShowCompoentKeys = Object.keys(copyShowComponent);
+    allShowCompoentKeys.map((comp) => (copyShowComponent[comp] = false));
+    copyShowComponent[nextComp] = true;
 
     setShowComponent(copyShowComponent);
   };
@@ -61,18 +69,21 @@ const ApplicationForm = () => {
           <PersonalDetails
             answersObject={answersObject}
             setStepsCompleted={setStepsCompleted}
-            setShowComponent={setShowComponent}
+            handleComponents={handleComponents}
           />
         )}
         {showComponent.survey && (
           <Survey
             answersObject={answersObject}
             setStepsCompleted={setStepsCompleted}
-            setShowComponent={setShowComponent}
+            handleComponents={handleComponents}
           />
         )}
         {showComponent.summary && (
-          <Summary setShowComponent={setShowComponent} answers={answers} />
+          <Summary handleComponents={handleComponents} answers={answers} />
+        )}
+        {showComponent.formEnds && (
+          <FormEnds componentsObject={componentsObject} />
         )}
       </div>
     </Fragment>
