@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { expandBackground } from "../../utils/expandBackground";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
