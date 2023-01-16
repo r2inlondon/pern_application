@@ -20,7 +20,7 @@ const ProgressNav = ({ stepsCompleted, showComponent, jumpBack }) => {
             ></button>
           )}
 
-          {showComponent.personalDetails && <div className="active" />}
+          {showComponent.personalDetails && <div className="active-comp" />}
         </div>
         <div className="line"></div>
         <div className="steps">
@@ -32,7 +32,7 @@ const ProgressNav = ({ stepsCompleted, showComponent, jumpBack }) => {
               onClick={showStep}
             ></button>
           )}
-          {showComponent.survey && <div className="active" />}
+          {showComponent.survey && <div className="active-comp" />}
         </div>
         <div className="line"></div>
         <div className="steps">
@@ -45,7 +45,7 @@ const ProgressNav = ({ stepsCompleted, showComponent, jumpBack }) => {
             ></button>
           )}
 
-          {showComponent.summary && <div className="active" />}
+          {showComponent.summary && <div className="active-comp" />}
         </div>
       </div>
       <div className="progress-txt-container">
