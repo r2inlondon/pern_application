@@ -25,7 +25,7 @@ const Summary = ({ handleComponents, answers }) => {
     expandBackground("bg-big");
     setLoading(true);
     const result = await createCandidate(answers);
-    setLoading(false);
+    // setLoading(false);
     console.log(result.status);
   };
 
