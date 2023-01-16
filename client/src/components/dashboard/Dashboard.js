@@ -1,5 +1,7 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useRef } from "react";
 import { expandBackground } from "../../utils/expandBackground";
+import { SearchOutlined } from "@ant-design/icons";
+import Highlighter from "react-highlight-words";
 import {
   Table,
   Button,
@@ -69,6 +71,19 @@ const Dashboard = ({ componentsObject }) => {
     setEditingKey(record.c_id);
   };
 
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText("");
+  };
+
   const handleLogout = () => {
     expandBackground("bg-bigger");
     componentsObject.action({
@@ -109,6 +124,97 @@ const Dashboard = ({ componentsObject }) => {
     setCandidates(candidatesArray);
   };
 
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+      close,
+    }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: "block",
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Reset
+          </Button>
+
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            close
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? "#1890ff" : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: "#ffc069",
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ""}
+        />
+      ) : (
+        text
+      ),
+  });
+
   const columns = [
     {
       title: "First Name",
@@ -123,6 +229,7 @@ const Dashboard = ({ componentsObject }) => {
       dataIndex: "lastname",
       key: "lastname",
       editable: true,
+      ...getColumnSearchProps("lastname"),
     },
     {
       title: "Gender",
@@ -140,28 +247,31 @@ const Dashboard = ({ componentsObject }) => {
         },
       ],
       onFilter: (value, record) => record.gender.includes(value),
-      width: "30%",
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
       editable: true,
+      ...getColumnSearchProps("email"),
     },
     {
       title: "Answer 1",
       dataIndex: "question1",
       key: "question1",
+      ...getColumnSearchProps("question1"),
     },
     {
       title: "Answer 2",
       dataIndex: "question2",
       key: "question2",
+      ...getColumnSearchProps("question2"),
     },
     {
       title: "Answer 3",
       dataIndex: "question3",
       key: "question3",
+      ...getColumnSearchProps("question3"),
     },
     {
       title: "Actions",
