@@ -115,6 +115,8 @@ const Dashboard = ({ componentsObject }) => {
       dataIndex: "firstname",
       key: "firstname",
       editable: true,
+      defaultSortOrder: "ascend",
+      sorter: (a, b) => a.firstname.localeCompare(b.firstname),
     },
     {
       title: "Last Name",
@@ -127,6 +129,18 @@ const Dashboard = ({ componentsObject }) => {
       dataIndex: "gender",
       key: "gender",
       editable: true,
+      filters: [
+        {
+          text: "Male",
+          value: "Male",
+        },
+        {
+          text: "Female",
+          value: "Female",
+        },
+      ],
+      onFilter: (value, record) => record.gender.includes(value),
+      width: "30%",
     },
     {
       title: "Email",
