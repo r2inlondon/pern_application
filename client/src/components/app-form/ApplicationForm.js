@@ -12,7 +12,7 @@ const ApplicationForm = ({ componentsObject }) => {
     personalDetails: true,
     survey: false,
     summary: false,
-    formEds: true,
+    formEds: false,
   });
 
   const [stepsCompleted, setStepsCompleted] = useState({
