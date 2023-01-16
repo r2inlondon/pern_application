@@ -109,6 +109,7 @@ const Dashboard = ({ componentsObject }) => {
 
     getData();
     setEditingKey("");
+    console.log(res.status);
   };
 
   const handleDelete = async (id) => {
@@ -116,6 +117,7 @@ const Dashboard = ({ componentsObject }) => {
     // setCandidates("");
     const res = await deleteCandidate(id);
     getData();
+    console.log(res.status);
   };
 
   const getData = async () => {
@@ -304,11 +306,14 @@ const Dashboard = ({ componentsObject }) => {
               title="Sure to delete?"
               onConfirm={() => handleDelete(record.c_id)}
             >
-              <Typography.Link>Delete</Typography.Link>
+              <Button danger type="text">
+                Delete
+              </Button>
             </Popconfirm>
           </span>
         );
       },
+      width: "12.5%",
     },
   ];
 
@@ -334,36 +339,36 @@ const Dashboard = ({ componentsObject }) => {
   }, []);
 
   return (
-    <Fragment>
+    <div className="dashboard-page">
       <div className="dashboard-header">
         <h1>Admin Dashboard</h1>
         <Popconfirm title="Sure to Logout?" onConfirm={handleLogout}>
-          <Button type="primary" ghost>
-            Logout
-          </Button>
+          <button className="the-button">Logout</button>
         </Popconfirm>
       </div>
       {!candidates && <Loader loaderTxt={loaderTxt} />}
       {candidates && (
-        <Form form={form} component={false}>
-          <Table
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            bordered
-            dataSource={candidates}
-            columns={mergedColumns}
-            rowClassName="editable-row"
-            rowKey={(obj) => obj.c_id}
-            pagination={{
-              onChange: cancel,
-            }}
-          />
-        </Form>
+        <div className="dashboard-table">
+          <Form form={form} component={false}>
+            <Table
+              components={{
+                body: {
+                  cell: EditableCell,
+                },
+              }}
+              bordered
+              dataSource={candidates}
+              columns={mergedColumns}
+              rowClassName="editable-row"
+              rowKey={(obj) => obj.c_id}
+              pagination={{
+                onChange: cancel,
+              }}
+            />
+          </Form>
+        </div>
       )}
-    </Fragment>
+    </div>
   );
 };
 
