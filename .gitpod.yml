@@ -16,13 +16,13 @@ tasks:
     init: npm install
     command: nodemon index
 
-  - name: start react
-    command: |
-      cd client && npm install
-      npm start
+# - name: start react
+#   command: |
+#     cd client && npm install
+#     npm start
 
-ports:
-  - name: react-ports
-    port: 3000
-    visibility: public
-    onOpen: open-browser
+# ports:
+#   - name: react-ports
+#     port: 3000
+#     visibility: public
+#     onOpen: open-browser
