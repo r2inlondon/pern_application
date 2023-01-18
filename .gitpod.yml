@@ -12,7 +12,9 @@ vscode:
 
 tasks:
   - name: node server
-    before: npm install nodemon --global
+    before: | 
+      npm install nodemon --global
+      curl -L https://fly.io/install.sh | sh    
     init: npm install
     command: nodemon index
 
