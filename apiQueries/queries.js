@@ -40,6 +40,7 @@ const getAllCandidates = async (req, res) => {
     res.json(allCandidates.rows);
   } catch (err) {
     console.error(err);
+    res.json(err);
   }
 };
 

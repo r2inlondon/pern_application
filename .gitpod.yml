@@ -2,7 +2,7 @@
 # Please adjust to your needs (see https://www.gitpod.io/docs/config-gitpod-file)
 # and commit this file to your remote git repository to share the goodness with others.
 
-# image: gitpod/workspace-postgres
+image: gitpod/workspace-postgres
 
 vscode:
   extensions:
@@ -21,8 +21,8 @@ tasks:
   #     cd client && npm install
   #     npm start
 
-ports:
-  - name: react-ports
-    port: 3000
-    visibility: public
-    onOpen: open-browser
+# ports:
+#   - name: react-ports
+#     port: 3000
+#     visibility: public
+#     onOpen: open-browser
