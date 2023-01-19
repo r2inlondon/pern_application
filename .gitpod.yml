@@ -17,8 +17,8 @@ tasks:
       curl -L https://fly.io/install.sh | sh    
     init: npm install
     command: | 
-      echo "export FLYCTL_INSTALL='/home/gitpod/.fly'" >> ~/.bash_aliases
-      echo "export PATH='$FLYCTL_INSTALL/bin:$PATH'" >> ~/.bash_aliases
+      echo export FLYCTL_INSTALL='/home/gitpod/.fly' >> ~/.bash_aliases
+      echo export PATH='$FLYCTL_INSTALL/bin:$PATH' >> ~/.bash_aliases
       nodemon index
 
   # - name: start react
