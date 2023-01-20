@@ -1,5 +1,12 @@
 const pool = require("./db");
 
+const createTable = async () => {
+  const query =
+    "CREATE TABLE IF NOT EXISTS candidate ( c_id serial PRIMARY KEY, firstname VARCHAR (100) NOT NULL, lastname VARCHAR (100) NOT NULL, gender VARCHAR ( 10 ) NOT NULL, email VARCHAR (255) UNIQUE NOT NULL, question1 VARCHAR ( 50 ) NOT NULL, question2 VARCHAR ( 50 ) NOT NULL, question3 VARCHAR ( 50 ) NOT NULL);";
+
+  const newTable = await pool.query(query);
+};
+
 const newCandidate = async (req, res) => {
   try {
     const {
@@ -105,6 +112,7 @@ const deleteCandidate = async (req, res) => {
 };
 
 module.exports = {
+  createTable,
   newCandidate,
   getAllCandidates,
   getOneCandidate,

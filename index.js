@@ -4,6 +4,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 const {
+  createTable,
   newCandidate,
   getAllCandidates,
   getOneCandidate,
@@ -14,6 +15,9 @@ const {
 // middleware
 app.use(cors());
 app.use(express.json()); // => allow us to access the req.body
+
+// Create Table
+createTable();
 
 // ROUTES
 
