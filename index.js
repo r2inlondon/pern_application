@@ -18,7 +18,7 @@ app.use(express.json()); // => allow us to access the req.body
 // ROUTES
 
 // create candidate
-app.post("/new", newCandidate);
+app.post("/candidates/new", newCandidate);
 
 // Get all candidates
 app.get("/candidates", getAllCandidates);
@@ -31,6 +31,11 @@ app.put("/candidates/:id", updateCandidate);
 
 // Delete
 app.delete("/candidates/:id", deleteCandidate);
+
+// Cath all
+app.get("*", (req, res) => {
+  res.json("Ooops, Invalid route");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
