@@ -9,7 +9,7 @@ describe("Get API route", () => {
 });
 
 describe("POST and Delete new candidate", () => {
-  let newUserId = "100";
+  let newUserId = "";
 
   test("new candidate", async () => {
     const results = await request(app).post("/candidates/new").send({
@@ -21,7 +21,8 @@ describe("POST and Delete new candidate", () => {
       question2: "Dog person",
       question3: "No",
     });
-    // newUserId = String(results._body);
+
+    newUserId = String(results._body);
 
     expect(results.statusCode).toBe(200);
   });
