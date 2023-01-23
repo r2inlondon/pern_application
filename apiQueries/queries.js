@@ -34,10 +34,13 @@ const newCandidate = async (req, res) => {
 
     const newCandidate = await pool.query(query);
 
-    res.json("Candidate was created !");
+    const candidateId = newCandidate.rows[0].c_id;
+
+    res.json(newCandidate.rows[0].c_id);
   } catch (err) {
     console.error(err.message);
-    res.json(err.detail);
+    res.status(400).send("Bad request!");
+    // res.json(err.detail);
   }
 };
 
