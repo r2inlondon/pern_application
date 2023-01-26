@@ -7,11 +7,13 @@ vscode:
     - streetsidesoftware.code-spell-checker
 
 tasks:
-  - name: node server
+  - name: node-server
     before: npm install nodemon --global      
     init: npm install
     command: 
-      nodemon index
+      nodemon server
+    env:
+      DATABASE_URL: postgres://gitpod@localhost/dbcandidate
 
   - name: flyctl
     before: curl -L https://fly.io/install.sh | sh
