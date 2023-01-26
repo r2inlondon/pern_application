@@ -14,9 +14,19 @@ tasks:
       nodemon server
     env:
       DATABASE_URL: postgres://gitpod@localhost/dbcandidate
+      
 
   - name: flyctl
     before: curl -L https://fly.io/install.sh | sh
     command: | 
       echo export FLYCTL_INSTALL='/home/gitpod/.fly' >> ~/.bash_aliases
       echo export PATH='$FLYCTL_INSTALL/bin:$PATH' >> ~/.bash_aliases
+  
+ports:
+  - name: API
+    port: 5000
+    onOpen: ignore
+    visibility: public
+
+    
+
